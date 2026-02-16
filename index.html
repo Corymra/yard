@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YARD – Yard Access & Retrieval Directory</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#000000" />
+</head>
+<body>
+  <div class="bg">
+    <div class="bgTexture"></div>
+  </div>
+
+  <main class="app">
+    <!-- MAIN SCREEN -->
+    <section id="screenMain" class="screen">
+      <header class="hero">
+        <div class="heroTop">
+          <button id="manageBtn" class="btn btnGhost" type="button" aria-label="Manage gate locations">Manage</button>
+        </div>
+
+        <h1 class="title">YARD</h1>
+        <div class="tagline">Access secured. Retrieval simplified.</div>
+        <div class="subtitle">Yard Access and Retrieval Directory</div>
+
+        <div class="metrics" id="metrics">Gate Locations: 0 • Searches: 0</div>
+      </header>
+
+      <section class="panel">
+        <label class="label" for="locationInput">Gate Location</label>
+        <input id="locationInput" class="field" placeholder="Enter gate location…" autocomplete="off" inputmode="text" />
+        <button id="searchBtn" class="btn btnPrimary" type="button">Search</button>
+
+        <div id="result" class="resultCard hidden" role="status" aria-live="polite"></div>
+
+        <div id="addPanel" class="hidden addPanel">
+          <div class="divider"></div>
+          <label class="label" for="newCode">Gate Code</label>
+          <input id="newCode" class="field" placeholder="Enter gate code…" autocomplete="off" inputmode="text" />
+          <div class="btnRow">
+            <button id="saveBtn" class="btn btnPrimary" type="button">Save</button>
+            <button id="cancelBtn" class="btn btnGhost" type="button">Cancel</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- MANAGE SCREEN -->
+    <section id="screenManage" class="screen hidden">
+      <header class="hero heroCompact">
+        <div class="heroTop">
+          <button id="backBtn" class="btn btnGhost" type="button" aria-label="Back to search">← Back</button>
+          <div class="heroTopCenter">
+            <div class="title miniTitle">YARD</div>
+            <div class="miniSub">Gate Location Manager</div>
+          </div>
+          <button id="clearAllBtn" class="btn btnDangerGhost" type="button" aria-label="Clear all gate locations">Clear All</button>
+        </div>
+        <div class="metrics" id="manageMetrics">Gate Locations: 0 • Searches: 0</div>
+      </header>
+
+      <section class="panel">
+        <div class="sectionTitle">Saved Gate Locations</div>
+
+        <div class="row">
+          <input id="filterInput" class="field fieldSmall" placeholder="Filter locations…" autocomplete="off" />
+          <button id="exportBtn" class="btn btnGhost" type="button">Export</button>
+        </div>
+
+        <div id="list" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="sectionTitle">Bulk Import</div>
+        <div class="muted">
+          Paste multiple entries (one per line). Formats supported: LOCATION, CODE or LOCATION = CODE.
+Bulk import keeps the FIRST occurrence of a location and ignores later duplicates. Matching is not case-sensitive.</span>
+        </div>
+
+        <textarea id="bulkInput" class="field textarea" placeholder="Example:
+yard, 1234
+southern yard, 5678
+north_gate = A1B2"></textarea>
+
+        <div class="row rowTight">
+          <button id="importBtn" class="btn btnPrimary" type="button">Import</button>
+
+          <button id="importFileBtn" class="btn btnGhost" type="button">Import File</button>
+          <input id="importFile" type="file" accept=".txt,.csv" class="hiddenFile" />
+
+          <button id="sampleBtn" class="btn btnGhost btnTiny" type="button" title="Reset search count">Reset Count</button>
+          <div class="lastImport" id="lastImport">Last import: —</div>
+        </div>
+
+        <div id="importResult" class="resultCard hidden" role="status" aria-live="polite"></div>
+      </section>
+    </section>
+
+    <footer class="footer">
+  <div class="brandBlock">
+    <div class="brandText">
+      © 2026 YARD — Yard Access & Retrieval Directory<br>
+      Software design by VAALOKTEC Systems™
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="bar orange"></div>
+    <div class="bar green"></div>
+    <div class="bar purple"></div>
+  </div>
+</footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
