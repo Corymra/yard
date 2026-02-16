@@ -1,3 +1,10 @@
+/* 
+YARD — Yard Access & Retrieval Directory (Y.A.R.D.)
+A privacy-preserving access code directory for fast, reliable coordination across distributed physical locations.
+Local-only storage. No accounts. No servers. No tracking.
+© 2026 VAALOKTEC Systems™
+*/
+
 const input = document.getElementById("locationInput");
 const result = document.getElementById("result");
 const addPanel = document.getElementById("addPanel");
