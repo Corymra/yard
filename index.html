@@ -1,16 +1,10 @@
-<!--
-YARD — Yard Access & Retrieval Directory (Y.A.R.D.)
-A privacy-preserving access code directory for fast, reliable coordination across distributed physical locations.
-Local-only storage. No accounts. No servers. No tracking.
-© 2026 VAALOKTEC Systems™
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YARD – Yard Access & Retrieval Directory</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'none';" />
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#000000" />
@@ -18,6 +12,10 @@ Local-only storage. No accounts. No servers. No tracking.
 <body>
   <div class="bg">
     <div class="bgTexture"></div>
+  </div>
+
+  <div id="storageWarning" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(255,60,60,0.92);color:#fff;text-align:center;padding:12px 16px;font-size:14px;font-weight:700;letter-spacing:0.04em;">
+    ⚠ Storage unavailable in this mode. Data will not be saved. Switch to a normal browser tab to use YARD.
   </div>
 
   <main class="app">
@@ -83,7 +81,7 @@ Local-only storage. No accounts. No servers. No tracking.
         <div class="sectionTitle">Bulk Import</div>
         <div class="muted">
           Paste multiple entries (one per line). Formats supported: LOCATION, CODE or LOCATION = CODE.
-Bulk import keeps the FIRST occurrence of a location and ignores later duplicates. Matching is not case-sensitive.</span>
+          Bulk import keeps the FIRST occurrence of a location and ignores later duplicates. Matching is not case-sensitive.
         </div>
 
         <textarea id="bulkInput" class="field textarea" placeholder="Example:
@@ -106,21 +104,28 @@ north_gate = A1B2"></textarea>
     </section>
 
     <footer class="footer">
-  <div class="brandBlock">
-    <div class="brandText">
-      © 2026 YARD — Yard Access & Retrieval Directory<br>
-      Software design by VAALOKTEC Systems™
-    </div>
-  </div>
+      <div class="brandBlock">
+        <div class="brandText">
+          © 2026 YARD — Yard Access & Retrieval Directory<br>
+          Software design by VAALOKTEC Systems™
+        </div>
+      </div>
 
-  <div class="bars">
-    <div class="bar orange"></div>
-    <div class="bar green"></div>
-    <div class="bar purple"></div>
-  </div>
-</footer>
+      <div class="bars">
+        <div class="bar orange"></div>
+        <div class="bar green"></div>
+        <div class="bar purple"></div>
+      </div>
+    </footer>
   </main>
 
   <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
